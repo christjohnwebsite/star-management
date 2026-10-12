@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12091f">
+  <meta name="description" content="STAR MANAGEMENT — Backup Links Center">
+  <title>STAR MANAGEMENT | Backup Links Center</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="glow glow-one"></div><div class="glow glow-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="STAR MANAGEMENT home">
+      <span class="brand-mark">★</span>
+      <span><strong>STAR MANAGEMENT</strong><small>BACKUP LINKS CENTER</small></span>
+    </a>
+    <button id="adminToggle" class="button button-ghost" type="button">Admin Login</button>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="eyebrow"><span class="status-dot"></span> LINK DIRECTORY</div>
+      <h1>Your links.<br><span>One central place.</span></h1>
+      <p class="hero-copy">Choose a backup-link group and open the link you need.</p>
+      <label class="search-wrap" for="searchInput">
+        <span aria-hidden="true">⌕</span>
+        <input id="searchInput" type="search" placeholder="Search groups or URLs..." autocomplete="off">
+        <kbd>SEARCH</kbd>
+      </label>
+      <div class="stats"><span class="stat-number" id="linkCount">0</span><span>backup links available</span><span class="stat-separator">•</span><span id="groupCount">0 groups</span></div>
+    </section>
+
+    <section class="links-section">
+      <div class="section-heading"><div><p class="eyebrow">DIRECTORY</p><h2>Backup Links</h2></div><span id="resultLabel" class="result-label">0 groups</span></div>
+      <div id="linksGrid" class="links-grid"></div>
+      <div id="emptyState" class="empty-state" hidden>
+        <span class="empty-icon">↗</span><h3>No backup links yet</h3>
+        <p>Backup-link groups added by the administrator will appear here.</p>
+      </div>
+    </section>
+
+    <section id="adminPanel" class="admin-panel" hidden>
+      <div class="section-heading"><div><p class="eyebrow">PRIVATE TOOLS</p><h2>Manage backup groups</h2></div><button id="logoutButton" class="button button-ghost" type="button">Log out</button></div>
+      <p class="notice"><strong>Demo mode:</strong> this static GitHub Pages version saves groups only in this browser. It does not provide secure authentication or sync groups across devices. Do not use it for confidential links. A secure shared admin system needs a backend such as Supabase or Firebase.</p>
+      <form id="linkForm" class="link-form">
+        <input type="hidden" id="editingId">
+        <label>Group title<input id="linkTitle" required maxlength="80" placeholder="e.g. ORION88 BACK UP LINK"></label>
+        <label>Icon (emoji or symbol)<input id="linkIcon" maxlength="12" placeholder="e.g. 🌟 or 🔗" value="🔗"></label>
+        <label class="upload-icon-label">Upload sariling icon (PNG, JPG, WEBP)<input id="linkIconFile" type="file" accept="image/png,image/jpeg,image/webp"><span class="field-help">Optional: mag-upload ng image para sa icon ng grupong ito.</span></label>
+        <div id="iconPreviewWrap" class="icon-preview-wrap" hidden><img id="iconPreview" alt="Icon preview"><button id="removeIconButton" class="button button-ghost" type="button">Remove uploaded icon</button></div>
+        <label class="url-label">Backup URLs — one URL per line<textarea id="linkUrls" required rows="6" placeholder="https://example.com&#10;https://backup2.example.com"></textarea></label>
+        <label class="description-label">Description (optional)<input id="linkDescription" maxlength="160" placeholder="Short note about this group"></label>
+        <div class="form-actions"><button id="saveLinkButton" class="button button-primary" type="submit">＋ Add backup group</button><button id="cancelEditButton" class="button button-ghost" type="button" hidden>Cancel edit</button></div>
+      </form>
+      <div class="admin-list-heading"><h3>Saved groups</h3><button id="exportButton" class="button button-ghost" type="button">Export JSON</button></div>
+      <div id="adminLinks" class="admin-links"></div>
+      <label class="import-label">Import JSON backup<input id="importInput" type="file" accept="application/json,.json"></label>
+    </section>
+  </main>
+
+  <footer><span class="footer-star">★</span><strong>STAR MANAGEMENT</strong><span>•</span><span>BACKUP LINKS CENTER</span><p>Open only links you trust. Verify a destination before entering personal information.</p></footer>
+
+  <dialog id="loginDialog" class="login-dialog">
+    <form id="loginForm" method="dialog">
+      <button id="closeLogin" class="dialog-close" type="button" aria-label="Close">×</button>
+      <div class="brand-mark dialog-star">★</div><p class="eyebrow">ADMIN ACCESS</p><h2>Welcome back</h2>
+      <p class="muted">Enter the demo passphrase to open local link management.</p>
+      <label>Demo passphrase<input id="adminPassword" type="password" autocomplete="current-password" required placeholder="Enter passphrase"></label>
+      <p id="loginError" class="error-message" hidden>Incorrect passphrase.</p>
+      <button class="button button-primary full-width" type="submit">Open admin panel</button>
+      <p class="tiny-note">Demo passphrase: <code>change-this-demo-key</code><br>Change it in <code>script.js</code>. This is not secure authentication.</p>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
