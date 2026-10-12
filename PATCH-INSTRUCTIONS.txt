@@ -1,0 +1,43 @@
+STAR MANAGEMENT — PLAIN URL LINKS PATCH
+
+This patch changes only the PUBLIC backup-links display. The admin panel and Supabase logic stay unchanged.
+
+1) In GitHub, open repository:
+   https://github.com/christjohnwebsite/star-management
+
+2) Open script.js, tap Edit (pencil), find this line inside renderGroups():
+   const a=el("a","url-link",`Backup link ${i+1} ↗`);
+
+   Replace it with:
+   const a=el("a","url-link",u);
+
+3) Open style.css, tap Edit (pencil), go to the VERY END and add:
+
+/* Public links: plain URL lines instead of button-like cards */
+.url-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 12px;
+}
+.url-link {
+  display: block;
+  padding: 2px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #f0d9ff;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.url-link:hover {
+  background: transparent;
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+4) Save/Commit changes in both files.
+5) Wait about 1–2 minutes, then reload the public website. If Chrome shows the old design, refresh the page or open it in an Incognito tab.
+
+This patch does not contain or change any Supabase keys, policies, admin login, or stored link data.
