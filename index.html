@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STAR MANAGEMENT | Backup Links Center</title>
+<link rel="stylesheet" href="style.css?v=20261013-2">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<header class="hero">
+  <div class="eyebrow">STAR MANAGEMENT</div>
+  <h1>Backup Links Center</h1>
+  <p>Official backup links in one place.</p>
+  <div id="status" class="status">Connecting to database…</div>
+</header>
+<main class="wrap">
+  <section class="panel">
+    <div class="section-head"><h2>Available Backup Links</h2><span id="count">Loading…</span></div>
+    <div id="groups" class="groups"><p class="muted">Loading backup links…</p></div>
+  </section>
+  <section class="panel admin-panel">
+    <div class="section-head"><h2>Admin Login</h2><button id="logoutBtn" class="secondary hidden" type="button">Log out</button></div>
+    <p class="muted">Sign in using the admin account created in Supabase Authentication.</p>
+    <form id="loginForm" class="login-grid">
+      <label>Email<input id="email" type="email" autocomplete="username" required placeholder="admin@example.com"></label>
+      <label>Password<input id="password" type="password" autocomplete="current-password" required placeholder="Your password"></label>
+      <button type="submit">Sign in</button>
+    </form>
+    <p id="authMessage" class="message" role="status"></p>
+    <div id="editor" class="hidden">
+      <hr>
+      <h3 id="formTitle">Add backup link group</h3>
+      <form id="groupForm">
+        <input id="groupId" type="hidden">
+        <label>Group title<input id="title" required maxlength="100" placeholder="e.g. ORION88 BACK UP LINK"></label>
+        <label>Icon / emoji<input id="icon" maxlength="12" value="🔗" placeholder="🔗"></label>
+        <label>Upload group icon (PNG, JPG, WEBP)<input id="iconFile" type="file" accept="image/png,image/jpeg,image/webp"></label>
+        <p id="iconUploadStatus" class="muted small"></p>
+        <label>Backup URLs <span class="muted small">(one URL per line)</span><textarea id="urls" rows="5" required placeholder="https://example.com"></textarea></label>
+        <label>Description<textarea id="description" rows="2" placeholder="Optional note"></textarea></label>
+        <div class="actions"><button type="submit">Save group</button><button id="cancelEdit" class="secondary hidden" type="button">Cancel edit</button></div>
+      </form>
+      <p id="saveMessage" class="message" role="status"></p>
+      <h3>Saved groups</h3>
+      <div id="adminGroups"></div>
+    </div>
+  </section>
+  <footer>Use only links you trust. If a link looks suspicious, do not open it.</footer>
+</main>
+<script src="script.js?v=20261013-2"></script>
+</body></html>
