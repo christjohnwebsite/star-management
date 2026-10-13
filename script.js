@@ -47,7 +47,7 @@ async function loadGroups(){
   setStatus("Loading backup links…");
   const {data,error}=await client.from("link_groups").select("*").order("sort_order",{ascending:true}).order("created_at",{ascending:false});
   if(error){setStatus("Database setup needs attention",true);$("groups").replaceChildren(el("div","empty",`Could not load groups: ${error.message}. Check the SQL setup in SUPABASE-SETUP.sql.`));$("count").textContent="Unavailable";return;}
-  cachedGroups=data||[];renderGroups(cachedGroups);setStatus("Connected to Supabase");
+  cachedGroups=data||[];renderGroups(cachedGroups);setStatus("Connected to Star management");
 }
 // Public-only page: no admin session is needed. Load public groups directly.
 loadGroups().catch((error)=>{
